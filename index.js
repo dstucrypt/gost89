@@ -85,6 +85,37 @@ Gost.prototype.crypt64 = function (clear, out) {
     out[6] = (n[0]>>>16)&0xff; out[7] = n[0]>>>24;
 };
 
+Gost.prototype.decrypt64 = function (crypt, out) {
+    var n = this.n;
+    n[0] = crypt[0]|(crypt[1]<<8)|(crypt[2]<<16)|(crypt[3]<<24);
+    n[1] = crypt[4]|(crypt[5]<<8)|(crypt[6]<<16)|(crypt[7]<<24);
+
+    n[1] ^= this.pass(n[0]+this.k[0]); n[0] ^= this.pass(n[1]+this.k[1]);
+    n[1] ^= this.pass(n[0]+this.k[2]); n[0] ^= this.pass(n[1]+this.k[3]);
+    n[1] ^= this.pass(n[0]+this.k[4]); n[0] ^= this.pass(n[1]+this.k[5]);
+    n[1] ^= this.pass(n[0]+this.k[6]); n[0] ^= this.pass(n[1]+this.k[7]);
+
+    n[1] ^= this.pass(n[0]+this.k[7]); n[0] ^= this.pass(n[1]+this.k[6]);
+    n[1] ^= this.pass(n[0]+this.k[5]); n[0] ^= this.pass(n[1]+this.k[4]);
+    n[1] ^= this.pass(n[0]+this.k[3]); n[0] ^= this.pass(n[1]+this.k[2]);
+    n[1] ^= this.pass(n[0]+this.k[1]); n[0] ^= this.pass(n[1]+this.k[0]);
+
+    n[1] ^= this.pass(n[0]+this.k[7]); n[0] ^= this.pass(n[1]+this.k[6]);
+    n[1] ^= this.pass(n[0]+this.k[5]); n[0] ^= this.pass(n[1]+this.k[4]);
+    n[1] ^= this.pass(n[0]+this.k[3]); n[0] ^= this.pass(n[1]+this.k[2]);
+    n[1] ^= this.pass(n[0]+this.k[1]); n[0] ^= this.pass(n[1]+this.k[0]);
+
+    n[1] ^= this.pass(n[0]+this.k[7]); n[0] ^= this.pass(n[1]+this.k[6]);
+    n[1] ^= this.pass(n[0]+this.k[5]); n[0] ^= this.pass(n[1]+this.k[4]);
+    n[1] ^= this.pass(n[0]+this.k[3]); n[0] ^= this.pass(n[1]+this.k[2]);
+    n[1] ^= this.pass(n[0]+this.k[1]); n[0] ^= this.pass(n[1]+this.k[0]);
+
+    out[0] = (n[1]&0xff);  out[1] = ((n[1]>>>8)&0xff);
+    out[2] = ((n[1]>>>16)&0xff); out[3]=(n[1]>>>24);
+    out[4] = (n[0]&0xff);  out[5] = ((n[0]>>>8)&0xff);
+    out[6] = ((n[0]>>>16)&0xff); out[7] = (n[0]>>>24);
+};
+
 Gost.prototype.crypt64_cfb = function (iv, clear, out) {
     var j;
     var gamma = this.gamma;
@@ -125,6 +156,19 @@ Gost.prototype.crypt = function (clear, out) {
     while (blocks--) {
         off = blocks * 8;
         this.crypt64(clear.slice(off, off + 8), out.slice(off, off + 8));
+    }
+};
+
+Gost.prototype.decrypt = function (cypher, clear) {
+    var blocks, off;
+
+    blocks = Math.ceil(cypher.length  / 8);
+    if (!blocks) {
+        return;
+    }
+    while (blocks--) {
+        off = blocks * 8;
+        this.decrypt64(cypher.slice(off, off + 8), clear.slice(off, off + 8));
     }
 };
 
