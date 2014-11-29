@@ -7,7 +7,7 @@ describe('Hash', function() {
             var input = '12345678901234567890123456789011';
             var expect_ret = '7686f3f4b113aadc97bca9ea054f41821f0676c5c28ffb987e41797a568e1ed4';
             var ret = gost89.gosthash(input);
-            assert.equal(expect_ret, ret.toString('hex'));
+            assert.equal(ret.toString('hex'), expect_ret);
 
             input = new Buffer([
                 0,  1,  2,  3,  4,  5,  6,  7,
@@ -18,7 +18,7 @@ describe('Hash', function() {
             expect_ret = '811cb06a8ee423182d9cc9d281f783908f4cfbaf47a68be8415d3499674a3063';
 
             ret = gost89.gosthash(input);
-            assert.equal(expect_ret,  ret.toString('hex'));
+            assert.equal(ret.toString('hex'), expect_ret);
         });
     });
 });
