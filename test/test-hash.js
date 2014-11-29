@@ -2,8 +2,8 @@ var assert = require("assert"),
     gost89 = require("..");
 
 describe('Hash', function() {
-    describe('#compute_hash()', function() {
-        it('should check hash function output value', function() {
+    describe('#gosthash()', function() {
+        it('should hash padded value', function() {
             var input = '12345678901234567890123456789011';
             var expect_ret = '7686f3f4b113aadc97bca9ea054f41821f0676c5c28ffb987e41797a568e1ed4';
             var ret = gost89.gosthash(input);
