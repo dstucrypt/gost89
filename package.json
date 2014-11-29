@@ -1,0 +1,22 @@
+{
+  "name": "gost89",
+  "version": "0.1.0",
+  "description": "Gost89 in JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter=spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dstucrypt/gost89.git"
+  },
+  "keywords": [
+    "gost89"
+  ],
+  "author": "Ilya Petrov",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/dstucrypt/gost89/issues"
+  },
+  "homepage": "https://github.com/dstucrypt/gost89"
+}
