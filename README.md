@@ -7,6 +7,12 @@ Gost89 cipher and hash function implementation in JS
 [![npm module](https://badge.fury.io/js/gost89.svg)](https://www.npmjs.org/package/gost89)
 [![dependencies](https://david-dm.org/dstucrypt/gost89.png)](https://david-dm.org/dstucrypt/gost89)
 
+Warning!
+--------
+
+Some things may not work. Only messages aligned to 32 bytes would be hashed or encrypted correctly.
+You have been warned!
+
 Algos
 -----
 
