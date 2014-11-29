@@ -20,5 +20,25 @@ describe('Hash', function() {
             ret = gost89.gosthash(input);
             assert.equal(ret.toString('hex'), expect_ret);
         });
+
+        it('should hash short values', function () {
+            var expect_ret = '34d4da2c04e9c1ceb933282069c864617d94ed7cc5c0a9840c0c1a99629df637';
+            var input = '123123';
+            var ret = gost89.gosthash(input);
+            assert.equal(ret.toString('hex'), expect_ret);
+
+        });
+
+        it('should hash splitted short chunks', function () {
+            var expect_ret = '34d4da2c04e9c1ceb933282069c864617d94ed7cc5c0a9840c0c1a99629df637';
+            var ctx = gost89.Hash.init();
+            ctx.update('123');
+            ctx.update('123');
+            var ret = new Buffer(32);
+            ctx.finish(ret);
+            assert.equal(ret.toString('hex'), expect_ret);
+
+        });
+
     });
 });
