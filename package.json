@@ -4,7 +4,7 @@
   "description": "Gost89 in JS",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter=spec"
+    "test": "mocha --reporter spec ./test/test*.js"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/dstucrypt/gost89/issues"
   },
-  "homepage": "https://github.com/dstucrypt/gost89"
+  "homepage": "https://github.com/dstucrypt/gost89",
+  "devDependencies": {
+    "mocha": "~1.14.0"
+  }
 }
