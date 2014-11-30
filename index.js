@@ -5,6 +5,7 @@ var Dstu = require('./lib/dstu.js');
 var Hash = require('./lib/hash.js');
 
 var util = require('./lib/util.js');
+var keywrap = require('./lib/keywrap.js');
 
 module.exports = {
     init: Gost.init,
@@ -12,4 +13,6 @@ module.exports = {
     gosthash: Hash.gosthash,
     dumb_kdf: util.dumb_kdf,
     pbkdf: util.pbkdf,
+    wrap_key: keywrap.wrap,
+    unwrap_key: keywrap.unwrap,
 };
