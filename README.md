@@ -33,47 +33,53 @@ Examples
 All function except Hash.update() accept buffer-like objects only. Don't pas your string here.
 
 Hash messages:
+```js
+var gost89 = require("gost89");
+var hash = gost89.gosthash("LA LA LA SHTIRLITZ KURWA VODKA MATRIOSKA");
+// <Buffer 0a 32 7f 3b ce e1 f3 de 0f 40 61 2e c3 ce d0 a3 29 51 b8 b2 16 8e 9a 01 0f 5b 15 46 c0 a9 1d 93>
 
-    var gost89 = require("gost89");
-    var hash = gost89.gosthash("LA LA LA SHTIRLITZ KURWA VODKA MATRIOSKA");
-    // <Buffer 0a 32 7f 3b ce e1 f3 de 0f 40 61 2e c3 ce d0 a3 29 51 b8 b2 16 8e 9a 01 0f 5b 15 46 c0 a9 1d 93>
+var hash_ctx = gost89.Hash.init();
+hash_ctx.update("ARBITARY SIZED VODKA");
+hash_ctx.update("VODKA VODKA MORE VODKA");
+var hash = hash_ctx.finish(new Buffer(32));
+// <Buffer 2c 1e d1 f1 2c 05 13 38 b2 7f 42 5d ea df e0 62 17 e6 9b 2c 19 d4 4a cd 24 ac 8d 5b b7 53 34 3f>
 
-    var hash_ctx = gost89.Hash.init();
-    hash_ctx.update("ARBITARY SIZED VODKA");
-    hash_ctx.update("VODKA VODKA MORE VODKA");
-    var hash = hash_ctx.finish(new Buffer(32));
-    // <Buffer 2c 1e d1 f1 2c 05 13 38 b2 7f 42 5d ea df e0 62 17 e6 9b 2c 19 d4 4a cd 24 ac 8d 5b b7 53 34 3f>
-
-    hash_ctx.reset();
-    hash.update32(buffer_of_32_bytes);
-    var hash = hash_ctx.finish(new Buffer(32));
+hash_ctx.reset();
+hash.update32(buffer_of_32_bytes);
+var hash = hash_ctx.finish(new Buffer(32));
+```
 
 
 Encrypt message:
 
-    var gost = gost89.init();
-    var clear = new Buffer('lol', 'binary');
-    var out = new Buffer(8);
-    gost.key(new Buffer(32));
-    gost.crypt(clear, out);
+```js
+var gost = gost89.init();
+var clear = new Buffer('lol', 'binary');
+var out = new Buffer(8);
+gost.key(new Buffer(32));
+gost.crypt(clear, out);
+```
 
 Encrypt messages in CFB mode:
 
-    var gost = gost89.init();
-    gost.crypt_cfb(iv, clear, out);
-    // out contains encrypted text
+```js
+var gost = gost89.init();
+gost.crypt_cfb(iv, clear, out);
+// out contains encrypted text
+```
 
 
 Properly encrypt message:
 
-    var gost = gost89.init();
-    var key = crypto.randomBytes(32);
-    var enc = new Buffer(text.length);
-    gost.key(key);
-    gost.crypt(text, enc);
+```js
+var gost = gost89.init();
+var key = crypto.randomBytes(32);
+var enc = new Buffer(text.length);
+gost.key(key);
+gost.crypt(text, enc);
 
-    var iv = crypto.randomBytes(8);
-    var shared_key = some_diffie_hellman_here(me, you); // see jkurwa
-    var wrapped_key = gost89.wrap_key(key, shared_key, iv);
-
-    // send enc and wrapped_key to other party
+var iv = crypto.randomBytes(8);
+var shared_key = some_diffie_hellman_here(me, you); // see jkurwa
+var wrapped_key = gost89.wrap_key(key, shared_key, iv);
+// send enc and wrapped_key to other party
+```
