@@ -6,6 +6,7 @@ var Hash = require('./lib/hash.js');
 
 var util = require('./lib/util.js');
 var keywrap = require('./lib/keywrap.js');
+var compat = require('./lib/compat.js');
 
 module.exports = {
     init: Gost.init,
@@ -15,4 +16,5 @@ module.exports = {
     pbkdf: util.pbkdf,
     wrap_key: keywrap.wrap,
     unwrap_key: keywrap.unwrap,
+    compat: compat,
 };
