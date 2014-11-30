@@ -11,4 +11,5 @@ module.exports = {
     Hash: Hash,
     gosthash: Hash.gosthash,
     dumb_kdf: util.dumb_kdf,
+    pbkdf: util.pbkdf,
 };
