@@ -30,7 +30,7 @@ explicitly what table to use.
 Examples
 --------
 
-All function except Hash.update() accept buffer-like objects only. Don't pas your string here.
+All function except Hash.update() accept buffer objects, string or byte arrays.
 
 Hash messages:
 ```js
@@ -55,16 +55,15 @@ Encrypt message:
 ```js
 var gost = gost89.init();
 var clear = new Buffer('lol', 'binary');
-var out = new Buffer(8);
 gost.key(new Buffer(32));
-gost.crypt(clear, out);
+var out = gost.crypt(clear, out);
 ```
 
 Encrypt messages in CFB mode:
 
 ```js
 var gost = gost89.init();
-gost.crypt_cfb(iv, clear, out);
+var out = gost.crypt_cfb(iv, clear);
 // out contains encrypted text
 ```
 
@@ -74,9 +73,8 @@ Properly encrypt message:
 ```js
 var gost = gost89.init();
 var key = crypto.randomBytes(32);
-var enc = new Buffer(text.length);
 gost.key(key);
-gost.crypt(text, enc);
+var enc = gost.crypt(text, enc);
 
 var iv = crypto.randomBytes(8);
 var shared_key = some_diffie_hellman_here(me, you); // see jkurwa
