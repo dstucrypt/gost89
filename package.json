@@ -1,6 +1,6 @@
 {
   "name": "gost89",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Gost89 in JS",
   "main": "index.js",
   "scripts": {
@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/dstucrypt/gost89",
   "devDependencies": {
-    "mocha": "~1.14.0"
+    "mocha": "^5.2.0"
   },
   "dependencies": {
     "buffer": ">= 3.0"
