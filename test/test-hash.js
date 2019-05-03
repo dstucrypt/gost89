@@ -9,7 +9,7 @@ describe('Hash', function() {
             var ret = gost89.gosthash(input);
             assert.equal(ret.toString('hex'), expect_ret);
 
-            input = new Buffer([
+            input = Buffer.from([
                 0,  1,  2,  3,  4,  5,  6,  7,
                 8,  9, 10, 11, 12, 13, 14, 15,
                 16, 17, 18, 19, 20, 21, 22, 23,
@@ -34,7 +34,7 @@ describe('Hash', function() {
             var ctx = gost89.Hash.init();
             ctx.update('123');
             ctx.update('123');
-            var ret = new Buffer(32);
+            var ret = Buffer.alloc(32);
             ctx.finish(ret);
             assert.equal(ret.toString('hex'), expect_ret);
 

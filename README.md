@@ -41,12 +41,12 @@ var hash = gost89.gosthash("LA LA LA SHTIRLITZ KURWA VODKA MATRIOSKA");
 var hash_ctx = gost89.Hash.init();
 hash_ctx.update("ARBITARY SIZED VODKA");
 hash_ctx.update("VODKA VODKA MORE VODKA");
-var hash = hash_ctx.finish(new Buffer(32));
+var hash = hash_ctx.finish(Buffer.alloc(32));
 // <Buffer 2c 1e d1 f1 2c 05 13 38 b2 7f 42 5d ea df e0 62 17 e6 9b 2c 19 d4 4a cd 24 ac 8d 5b b7 53 34 3f>
 
 hash_ctx.reset();
 hash.update32(buffer_of_32_bytes);
-var hash = hash_ctx.finish(new Buffer(32));
+var hash = hash_ctx.finish(Buffer.alloc(32));
 ```
 
 
@@ -54,8 +54,8 @@ Encrypt message:
 
 ```js
 var gost = gost89.init();
-var clear = new Buffer('lol', 'binary');
-gost.key(new Buffer(32));
+var clear = Buffer.from('lol', 'binary');
+gost.key(Buffer.alloc(32));
 var out = gost.crypt(clear, out);
 ```
 

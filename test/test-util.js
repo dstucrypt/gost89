@@ -16,7 +16,7 @@ describe('utils', function () {
     describe('pbkdf()', function () {
         it('should expand password into key', function () {
             var input = 'password',
-                salt = new Buffer('31a58dc1462981189cf6c701e276c7553a5ab5f6e36d8418e4aa40c930cf3876','hex');
+                salt = Buffer.from('31a58dc1462981189cf6c701e276c7553a5ab5f6e36d8418e4aa40c930cf3876','hex');
 
             var expect_key10000 = 'c4e7f788e60c731a2cfedd300af67bd2ee9458532a793e5280ae7f8c1e562e44',
                 expect_key1 = 'b1d0fba9e976971b3f0eb3db1d574f972a862d68f67eadaa7ca9161b76f368da',
@@ -34,9 +34,9 @@ describe('utils', function () {
 
     describe('key_wrap()', function () {
         it('should wrap encryption key', function () {
-            var kek = new Buffer('9c6e6852023b46f499f25b9b0eb7027387fdd5650f5d638ee5f99eb8dc781fde', 'hex'),
-                cek = new Buffer('11080811020a0d0913040f020111190b04060c101d1c0a0911060e160b121419', 'hex'),
-                iv = new Buffer('09100509181c0515', 'hex');
+            var kek = Buffer.from('9c6e6852023b46f499f25b9b0eb7027387fdd5650f5d638ee5f99eb8dc781fde', 'hex'),
+                cek = Buffer.from('11080811020a0d0913040f020111190b04060c101d1c0a0911060e160b121419', 'hex'),
+                iv = Buffer.from('09100509181c0515', 'hex');
 
             var expect_key = 'e90fe95628e715f4d6f3d1151ded367250f7006648ffffde574a4ea38250c1c5a0fdff11f36d9186d3b27c60';
 
@@ -47,8 +47,8 @@ describe('utils', function () {
 
     describe('key_unwrap()', function () {
         it('should unwrap encryption key', function () {
-            var wcek = new Buffer('e90fe95628e715f4d6f3d1151ded367250f7006648ffffde574a4ea38250c1c5a0fdff11f36d9186d3b27c60', 'hex');
-            var kek = new Buffer('9c6e6852023b46f499f25b9b0eb7027387fdd5650f5d638ee5f99eb8dc781fde', 'hex');
+            var wcek = Buffer.from('e90fe95628e715f4d6f3d1151ded367250f7006648ffffde574a4ea38250c1c5a0fdff11f36d9186d3b27c60', 'hex');
+            var kek = Buffer.from('9c6e6852023b46f499f25b9b0eb7027387fdd5650f5d638ee5f99eb8dc781fde', 'hex');
 
             var expect_key = '11080811020a0d0913040f020111190b04060c101d1c0a0911060e160b121419';
 
@@ -56,8 +56,8 @@ describe('utils', function () {
             assert.equal(key.toString('hex'), expect_key);
 
             expect_key = '11080811020a0d0913040f020111190b04060c101d1c0a0911060e160b121419';
-            wcek = new Buffer('359a37cf972520b590ef109b7c454c991d95da782e30ac9fe917fbb52e9402a4d236fd030f49627ec63c2684', 'hex'),
-            kek = new Buffer('1de57ae661b7e142727170dd5066d04bd63231d5a207778075d17a831e853902', 'hex');
+            wcek = Buffer.from('359a37cf972520b590ef109b7c454c991d95da782e30ac9fe917fbb52e9402a4d236fd030f49627ec63c2684', 'hex'),
+            kek = Buffer.from('1de57ae661b7e142727170dd5066d04bd63231d5a207778075d17a831e853902', 'hex');
             key = gost89.unwrap_key(wcek, kek);
             assert.equal(key.toString('hex'), expect_key);
 

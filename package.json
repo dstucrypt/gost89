@@ -1,6 +1,6 @@
 {
   "name": "gost89",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "Gost89 in JS",
   "main": "index.js",
   "scripts": {
