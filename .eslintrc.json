@@ -4,6 +4,8 @@
     "jest": true
   },
   "ignorePatterns": [
-    "build/**/*"
+    "build/**/*",
+    "**/*.d.ts",
+    "**/*.js"
   ]
 }
