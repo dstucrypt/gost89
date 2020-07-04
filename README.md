@@ -1,7 +1,7 @@
 Gost89
 ======
 
-Gost89 cipher and hash function implementation in JS
+Gost89 cipher and hash function implementation in TypeScript.
 
 [![Build Status](https://travis-ci.org/dstucrypt/gost89.svg?branch=master)](https://travis-ci.org/dstucrypt/gost89)
 [![npm module](https://badge.fury.io/js/gost89.svg)](https://www.npmjs.org/package/gost89)
