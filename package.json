@@ -47,7 +47,7 @@
   "contributors": [
     "Bohdan Vanieiev <warchantua@gmail.com>"
   ],
-  "license": "MIT",
+  "license": "BSD",
   "bugs": {
     "url": "https://github.com/dstucrypt/gost89/issues"
   },

@@ -203,7 +203,7 @@ export class Hash {
     this.len += 32;
   }
 
-  finish(hashval?: Buffer): Buffer {
+  finish(hashval: Buffer): Buffer {
     const buf = this.buf;
     let fin_len = this.len;
     let idx = 0;
@@ -232,9 +232,6 @@ export class Hash {
     this.step(this.H, buf);
     this.step(this.H, this.S);
 
-    if (typeof hashval === 'undefined') {
-      hashval = Buffer.alloc(32);
-    }
     for (idx = 0; idx < 32; idx++) {
       hashval[idx] = this.H[idx];
     }
