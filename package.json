@@ -9,8 +9,8 @@
   ],
   "scripts": {
     "test": "jest",
-    "audit": "yarn audit",
-    "build": "yarn compile",
+    "audit": "npm run audit",
+    "build": "npm run compile",
     "test:cov": "jest --coverage",
     "check": "gts check",
     "clean": "gts clean",
