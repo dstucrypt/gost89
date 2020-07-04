@@ -1,7 +1,7 @@
-import {Gost} from './gost89';
-import {gosthash, Hash} from './hash';
-import {dumb_kdf, pbkdf} from './util';
-import {unwrap_key, wrap_key} from './keywrap';
+import {Gost} from './src/gost89';
+import {gosthash, Hash} from './src/hash';
+import {dumb_kdf, pbkdf} from './src/util';
+import {unwrap_key, wrap_key} from './src/keywrap';
 import {
   algos,
   compute_hash,
@@ -12,8 +12,8 @@ import {
   gost_kdf,
   gost_keywrap,
   gost_unwrap,
-} from './compat';
-import {PRNG} from './prng';
+} from './src/compat';
+import {PRNG} from './src/prng';
 
 export default {
   init: () => {
