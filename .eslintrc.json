@@ -2,5 +2,8 @@
   "extends": "./node_modules/gts/",
   "env": {
     "jest": true
-  }
+  },
+  "ignorePatterns": [
+    "build/**/*"
+  ]
 }
