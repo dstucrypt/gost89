@@ -312,7 +312,7 @@ export class Gost {
     }
   }
 
-  mac(len: number, data: Buffer, out: Buffer) {
+  mac(len: number, data: Buffer, out: Buffer): Buffer{
     const buf = Buffer.alloc(8);
     const buf2 = Buffer.alloc(8);
 
@@ -336,26 +336,21 @@ export class Gost {
       this.mac64(buf, buf2);
     }
 
-    Gost.mac_out(buf, len, out);
+    return Gost.mac_out(buf, len, out);
   }
 
-  private static mac_out(buf: Uint8Array, nbits: number, out: Buffer): void {
+  private static mac_out(buf: Uint8Array, nbits: number, out: Buffer): Buffer {
     const nBuffer = nbits >>> 3;
     const rembits = nbits & 7;
     const mask = rembits ? Number(1 < rembits) - 1 : 0;
     let i;
-    if (typeof out === 'undefined') {
-      out = Buffer.alloc(nBuffer);
-    }
-    if (!Buffer.isBuffer(out)) {
-      throw new Error('Either pass output buffer or nothing');
-    }
     for (i = 0; i < nBuffer; i++) {
       out[i] = buf[i];
     }
     if (rembits) {
       out[i] = buf[i] & mask;
     }
+    return out;
   }
 
   private mac64(buffer: Uint8Array, block: Uint8Array) {
