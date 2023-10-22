@@ -1,0 +1,10 @@
+test
+node_modules
+.github
+.gitignore
+.prettierrc.js
+.eslintrc.json
+package-lock.json
+travis.yml
+.idea
+.travis.yml
